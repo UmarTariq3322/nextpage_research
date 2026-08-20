@@ -1,0 +1,1061 @@
+You are a senior product designer, UX engineer, and Next.js architect.
+
+I want you to build a complete, production-quality website for a new research division of my company:
+
+Company: Nexpage Technologies
+New Research Division: Nexpage Research
+
+Reference website:
+
+
+Your first task is to thoroughly inspect and understand the reference website, including its:
+- Overall information architecture
+- Page structure
+- Navigation
+- Hero section
+- Section ordering
+- Content hierarchy
+- CTA strategy
+- Research/education positioning
+- Mentorship presentation
+- Testimonials/success stories
+- Publication/results presentation
+- Footer structure
+- Visual hierarchy
+- Spacing
+- Typography
+- Cards
+- Animations
+- Responsive behavior
+- User journey
+
+IMPORTANT:
+Do NOT copy the reference website's branding, text, images, logos, proprietary content, or exact visual design.
+
+Use it as UX/business inspiration only.
+
+The goal is to create an ORIGINAL, premium website with a similar level of professionalism and conversion-focused structure, but with a distinct Nexpage Research identity.
+
+==================================================
+1. PRODUCT VISION
+==================================================
+
+Nexpage Research is a research and innovation division of Nexpage Technologies.
+
+Position it as:
+
+"Nexpage Research — Research, AI & Publication"
+
+Core positioning:
+
+Research Services + Research Education + AI Research + Research Technology
+
+The website should communicate that Nexpage Research helps students, researchers, academics, organizations, and professionals move from:
+
+Research Idea
+→ Research Problem
+→ Literature Review
+→ Research Methodology
+→ Data Collection
+→ Data Analysis
+→ AI/ML Modeling
+→ Results
+→ Manuscript
+→ Publication
+→ Research Impact
+
+The website should feel like a serious research organization, not a generic course-selling website.
+
+==================================================
+2. TARGET USERS
+==================================================
+
+Design the website for:
+
+1. BS students
+2. MS students
+3. PhD students
+4. Academic researchers
+5. University faculty
+6. AI/ML researchers
+7. Data scientists
+8. Organizations requiring research/data consulting
+9. Researchers interested in systematic reviews and meta-analysis
+10. People looking for publication and research mentorship
+
+==================================================
+3. BRAND
+==================================================
+
+Brand:
+
+Nexpage Research
+
+Parent company:
+
+Nexpage Technologies
+
+Suggested tagline:
+
+"Research. Innovate. Publish."
+
+Alternative supporting message:
+
+"From Research Ideas to Real-World Impact."
+
+Core themes:
+
+- Research
+- Artificial Intelligence
+- Machine Learning
+- Data Science
+- Statistical Analysis
+- Systematic Reviews
+- Meta-Analysis
+- Research Methodology
+- Publication
+- Research Mentorship
+- Research Automation
+
+Do not make the site look like a university website.
+
+It should feel like a modern research and technology company.
+
+==================================================
+4. DESIGN DIRECTION
+==================================================
+
+Create a premium, modern, minimal academic/technology aesthetic.
+
+Visual characteristics:
+
+- Clean white/off-white backgrounds
+- Dark navy/charcoal typography
+- One consistent Nexpage accent color
+- Large editorial typography
+- Generous whitespace
+- Premium cards
+- Subtle borders
+- Soft shadows
+- Rounded corners
+- Research charts and visual elements
+- High-quality imagery where appropriate
+- Subtle gradients
+- Professional animations
+- Smooth scrolling
+- Excellent mobile responsiveness
+
+Avoid:
+
+- Excessive gradients
+- Generic SaaS templates
+- Excessive glassmorphism
+- Cheap-looking stock graphics
+- Excessive animations
+- Overly colorful UI
+- Generic AI landing-page aesthetics
+
+The website should look credible enough for researchers and university faculty.
+
+==================================================
+5. TECHNOLOGY
+==================================================
+
+Use:
+
+- Next.js latest stable version
+- App Router
+- TypeScript
+- Tailwind CSS
+- shadcn/ui where useful
+- Framer Motion for animations
+- Lucide icons
+- Responsive design
+- Semantic HTML
+- SEO-friendly structure
+
+Use a clean component architecture.
+
+Suggested structure:
+
+src/
+  app/
+  components/
+    layout/
+    navigation/
+    sections/
+    cards/
+    ui/
+  data/
+  lib/
+  hooks/
+  types/
+
+Do not create one huge page component.
+
+Break the UI into reusable components.
+
+==================================================
+6. MAIN NAVIGATION
+==================================================
+
+Create:
+
+Logo:
+Nexpage Research
+
+Navigation:
+
+Home
+About
+Research Services
+Programs
+Research
+Publications
+Our Researchers
+Resources
+
+Right-side CTA:
+
+"Start Your Research"
+
+Also include:
+
+"Research Portal"
+
+The navbar should:
+
+- Be responsive
+- Have a mobile menu
+- Have active states
+- Have subtle scroll behavior
+- Remain visually premium
+- Have a sticky/fixed behavior where appropriate
+
+==================================================
+7. HOME PAGE
+==================================================
+
+Create a complete homepage.
+
+Section order:
+
+1. Navigation
+2. Hero
+3. Research challenges
+4. Nexpage Research solution
+5. Research workflow
+6. Research services
+7. AI-powered research
+8. Research programs
+9. Research projects
+10. Publications
+11. Researchers/team
+12. Success stories
+13. Research community
+14. Final CTA
+15. Footer
+
+==================================================
+8. HERO SECTION
+==================================================
+
+Headline:
+
+"Turn Research Ideas Into Impactful Work"
+
+Supporting text:
+
+"Research methodology, AI-powered analysis, mentorship, and publication support for students, researchers, academics, and organizations."
+
+Primary CTA:
+
+"Start Your Research"
+
+Secondary CTA:
+
+"Explore Research Services"
+
+Add a sophisticated visual on the right.
+
+Possible visual:
+
+A research workspace containing:
+
+- Research papers
+- Statistical charts
+- AI/ML visualization
+- Dataset
+- Research graph
+- Publication document
+
+Use subtle animation.
+
+The hero should immediately communicate:
+
+Research + AI + Data + Publication.
+
+==================================================
+9. RESEARCH CHALLENGES
+==================================================
+
+Heading:
+
+"Research Is Difficult. It Doesn't Have to Be."
+
+Create six premium cards:
+
+1. Finding the Right Research Problem
+2. Literature Review
+3. Research Methodology
+4. Data & Statistical Analysis
+5. AI/ML Experimentation
+6. Publication
+
+Each card should have:
+
+- Icon
+- Title
+- Short explanation
+- Subtle hover effect
+
+==================================================
+10. OUR SOLUTION
+==================================================
+
+Heading:
+
+"From Research Idea to Publication"
+
+Explain the complete research journey.
+
+Create an interactive/animated research pipeline:
+
+Research Idea
+↓
+Problem Definition
+↓
+Literature Review
+↓
+Research Design
+↓
+Data Collection
+↓
+Data Analysis
+↓
+AI/ML Modeling
+↓
+Results
+↓
+Manuscript
+↓
+Submission
+↓
+Publication
+
+Make this section visually strong.
+
+==================================================
+11. RESEARCH SERVICES
+==================================================
+
+Create a dedicated section:
+
+"Research Services"
+
+Services:
+
+1. Research Consulting
+
+Research problem formulation, methodology, study design, and research planning.
+
+2. Systematic Review & Meta-Analysis
+
+PRISMA-based systematic reviews, evidence synthesis, effect-size analysis, and meta-analysis.
+
+3. AI & Machine Learning Research
+
+Machine learning, deep learning, NLP, computer vision, generative AI, LLMs, RAG, and AI experimentation.
+
+4. Statistical Analysis
+
+Hypothesis testing, regression, correlation, ANOVA, statistical modeling, and interpretation.
+
+5. Data Science
+
+Data preprocessing, exploratory analysis, visualization, feature engineering, and predictive modeling.
+
+6. Thesis & FYP Research Support
+
+Research design, implementation, experimentation, evaluation, and technical guidance.
+
+7. Manuscript Development
+
+Research paper structure, technical writing, figures, tables, and results presentation.
+
+8. Publication Support
+
+Journal/conference selection, formatting, manuscript preparation, and submission guidance.
+
+Every service should have:
+
+- Icon
+- Title
+- Description
+- "Learn More" CTA
+
+==================================================
+12. AI-POWERED RESEARCH
+==================================================
+
+This must be one of the strongest sections.
+
+Heading:
+
+"Research Powered by AI"
+
+Description:
+
+"We combine established research methodology with modern artificial intelligence to make research workflows faster, more reproducible, and more scalable."
+
+Create an animated workflow:
+
+AI Literature Discovery
+→ Paper Classification
+→ Knowledge Extraction
+→ Research Gap Identification
+→ Data Analysis
+→ Model Development
+→ Statistical Validation
+→ Research Insights
+
+Add a visual representation of:
+
+Papers → AI → Knowledge → Research Insights
+
+Mention capabilities such as:
+
+- Literature discovery
+- Paper summarization
+- Research question exploration
+- Knowledge extraction
+- Citation analysis
+- Dataset analysis
+- AI-assisted experimentation
+- Research automation
+- RAG-based research assistants
+
+Do not claim capabilities as already commercially available unless represented as a product concept.
+
+==================================================
+13. RESEARCH PROGRAMS
+==================================================
+
+Create a section:
+
+"Research Programs"
+
+Programs:
+
+A. Research Foundations
+
+For beginners.
+
+Topics:
+- Research fundamentals
+- Problem identification
+- Literature review
+- Research questions
+- Methodology
+- Data collection
+- Academic writing
+
+B. AI Research Program
+
+Topics:
+- AI research methodology
+- Dataset development
+- ML experimentation
+- Deep learning
+- LLM research
+- RAG
+- Model evaluation
+- Statistical validation
+- Research paper development
+
+C. Systematic Review & Meta-Analysis
+
+Topics:
+- PRISMA
+- Search strategy
+- Screening
+- Data extraction
+- Risk of bias
+- Effect sizes
+- Statistical analysis
+- Meta-analysis
+- Manuscript preparation
+
+Each program should have:
+
+- Level
+- Duration
+- Format
+- Topics
+- CTA
+
+CTA:
+
+"Explore Program"
+
+==================================================
+14. RESEARCH PROJECTS
+==================================================
+
+Create:
+
+"Research Projects"
+
+Use premium project cards.
+
+Categories:
+
+- Artificial Intelligence
+- Machine Learning
+- Generative AI
+- Data Science
+- Cybersecurity
+- NLP
+- Research Automation
+
+Each project card:
+
+- Project title
+- Category
+- Short description
+- Research methodology
+- Status
+- Researchers
+- View Project
+
+Use realistic placeholder content but clearly structure it so real projects can easily replace it later.
+
+Do NOT fabricate real publications or research results.
+
+==================================================
+15. PUBLICATIONS
+==================================================
+
+Create:
+
+"Our Publications"
+
+Publication cards should contain:
+
+- Title
+- Authors
+- Research area
+- Journal/conference
+- Year
+- Abstract/summary
+- DOI placeholder if available
+- Read Paper
+- View Research
+
+Create a filter UI:
+
+All
+AI/ML
+Data Science
+Cybersecurity
+Generative AI
+Other
+
+Use sample/demo publications only.
+
+Clearly structure the data so I can replace them with actual publications.
+
+==================================================
+16. RESEARCHERS
+==================================================
+
+Create:
+
+"Meet Our Researchers"
+
+Researcher cards:
+
+- Photo
+- Name
+- Role
+- Research interests
+- Short bio
+- LinkedIn
+- Google Scholar
+- ORCID
+- GitHub
+
+Create an example profile for:
+
+Muhammad Umar Tariq
+
+Role:
+
+AI Engineer & Researcher
+
+Research interests:
+
+- Artificial Intelligence
+- Machine Learning
+- Generative AI
+- LLMs
+- RAG
+- AI Agents
+- Data Science
+- Research Automation
+
+Do not invent academic publications, degrees, awards, or credentials.
+
+Use placeholders where information is not provided.
+
+==================================================
+17. RESEARCH IMPACT
+==================================================
+
+Create a metrics section.
+
+Use placeholders rather than fake claims:
+
+XX+
+Research Projects
+
+XX+
+Publications
+
+XX+
+Researchers
+
+XX+
+Students Trained
+
+XX+
+Research Collaborations
+
+Add a note in the code/data structure showing these values should be replaced with verified numbers before launch.
+
+==================================================
+18. SUCCESS STORIES
+==================================================
+
+Create:
+
+"From Research Idea to Publication"
+
+Use case-study style cards.
+
+Each case study should show:
+
+Challenge
+→ Approach
+→ Outcome
+
+Use clearly labeled demo/placeholder content.
+
+Do not create fake testimonials presented as real people.
+
+==================================================
+19. RESEARCH COMMUNITY
+==================================================
+
+Create:
+
+"Join the Nexpage Research Community"
+
+Explain that the community can provide:
+
+- Research discussions
+- Paper reading groups
+- Workshops
+- Mentorship
+- Research collaborations
+- Publication guidance
+- Research opportunities
+
+CTA:
+
+"Join Research Community"
+
+==================================================
+20. RESOURCES
+==================================================
+
+Create a resource/blog section.
+
+Categories:
+
+Research Guides
+AI Research
+Data Science
+Statistics
+Systematic Reviews
+Academic Writing
+Publication
+
+Example article titles:
+
+"How to Define a Strong Research Problem"
+
+"How to Conduct a Literature Review"
+
+"How to Design a Research Methodology"
+
+"How to Evaluate a Machine Learning Model"
+
+"How to Prepare a Research Paper"
+
+"Introduction to Systematic Reviews"
+
+Create the UI so articles can later be connected to a CMS or database.
+
+==================================================
+21. FINAL CTA
+==================================================
+
+Create a powerful final CTA:
+
+"Have a Research Idea?"
+
+Supporting text:
+
+"Let's turn your research question into a structured, evidence-driven project."
+
+Buttons:
+
+"Start Your Research"
+
+"Talk to a Research Consultant"
+
+==================================================
+22. FOOTER
+==================================================
+
+Footer should contain:
+
+Nexpage Research
+
+"A research and innovation division of Nexpage Technologies."
+
+Columns:
+
+Research
+- Research Services
+- AI Research
+- Systematic Reviews
+- Meta-Analysis
+- Data Science
+- Publication Support
+
+Programs
+- Research Foundations
+- AI Research Program
+- Systematic Review Program
+
+Company
+- About
+- Researchers
+- Publications
+- Resources
+- Contact
+
+Connect
+- LinkedIn
+- GitHub
+- YouTube
+- Instagram
+
+Bottom:
+
+"© 2026 Nexpage Technologies. All rights reserved."
+
+==================================================
+23. ABOUT PAGE
+==================================================
+
+Create a dedicated About page.
+
+Sections:
+
+- Who We Are
+- Why Nexpage Research Exists
+- Our Research Philosophy
+- Research + AI
+- Our Approach
+- Research Areas
+- Team
+- CTA
+
+Position Nexpage Research as a research and innovation division, not merely an educational academy.
+
+==================================================
+24. SERVICES PAGE
+==================================================
+
+Create a detailed Research Services page.
+
+Each service should have:
+
+- Hero
+- Description
+- Problems solved
+- Deliverables
+- Process
+- FAQ
+- CTA
+
+Do not use fake pricing.
+
+Instead use:
+
+"Request Consultation"
+
+==================================================
+25. PROGRAMS PAGE
+==================================================
+
+Create a complete Programs page.
+
+Include:
+
+- Program cards
+- Curriculum
+- Duration
+- Level
+- Delivery format
+- Learning outcomes
+- FAQs
+- Apply CTA
+
+==================================================
+26. RESEARCH PAGE
+==================================================
+
+Create a research portfolio page.
+
+Features:
+
+- Search
+- Category filtering
+- Research project cards
+- Project detail pages
+
+Dynamic route:
+
+/research/[slug]
+
+==================================================
+27. PUBLICATIONS PAGE
+==================================================
+
+Create:
+
+/publications
+
+Features:
+
+- Search
+- Filters
+- Publication cards
+- Publication detail pages
+
+Dynamic route:
+
+/publications/[slug]
+
+==================================================
+28. RESEARCHER PROFILE
+==================================================
+
+Create:
+
+/researchers/[slug]
+
+Profile includes:
+
+- Name
+- Role
+- Bio
+- Research interests
+- Projects
+- Publications
+- Social links
+
+==================================================
+29. CONTACT PAGE
+==================================================
+
+Create a professional contact page.
+
+Fields:
+
+Name
+Email
+Phone
+Organization
+Research Level
+Research Area
+Service Required
+Message
+
+Research Level:
+
+BS
+MS
+PhD
+Researcher
+Faculty
+Organization
+Other
+
+Service Required:
+
+Research Consulting
+AI/ML Research
+Systematic Review
+Meta-Analysis
+Statistical Analysis
+Thesis/FYP Support
+Publication Support
+Research Training
+Other
+
+Add proper frontend validation.
+
+==================================================
+30. RESEARCH PORTAL
+==================================================
+
+Do not implement a full backend unless the project already has one.
+
+However, create the UI architecture for:
+
+/portal
+
+Roles:
+
+Student
+Researcher
+Mentor
+Admin
+
+Dashboard concepts:
+
+Student:
+- Research projects
+- Assigned mentor
+- Tasks
+- Documents
+- Progress
+- Meetings
+
+Researcher:
+- Projects
+- Publications
+- Collaborators
+- Datasets
+
+Mentor:
+- Students
+- Research projects
+- Reviews
+- Tasks
+
+Admin:
+- Users
+- Programs
+- Projects
+- Publications
+- Leads
+- Content
+
+Use mock data if authentication/backend is not implemented.
+
+==================================================
+31. SEO
+==================================================
+
+Implement proper SEO.
+
+Include:
+
+- Metadata
+- Open Graph
+- Twitter cards
+- Canonical URLs
+- robots.txt
+- sitemap
+- Semantic HTML
+- Structured data where appropriate
+
+Create metadata for:
+
+Home
+About
+Services
+Programs
+Research
+Publications
+Researchers
+Resources
+Contact
+
+Target keywords naturally:
+
+Nexpage Research
+research consulting
+AI research
+machine learning research
+research methodology
+systematic review
+meta-analysis
+research mentorship
+publication support
+AI research services
+data analysis research
+research automation
+
+Do not keyword-stuff.
+
+==================================================
+32. ACCESSIBILITY
+==================================================
+
+Follow WCAG-oriented practices.
+
+Ensure:
+
+- Keyboard navigation
+- Proper heading hierarchy
+- Accessible buttons
+- Accessible forms
+- Alt text
+- Good contrast
+- Focus states
+- Reduced motion support
+- Semantic HTML
+
+==================================================
+33. RESPONSIVENESS
+==================================================
+
+The website must work properly on:
+
+- 1440px desktop
+- 1280px desktop
+- 1024px tablet
+- 768px tablet
+- 390px mobile
+- 375px mobile
+
+Do not simply shrink the desktop design.
+
+Design mobile
