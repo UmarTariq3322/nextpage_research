@@ -100,9 +100,7 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-2">
             <ThemeToggle />
-            <Button asChild variant="ghost" size="sm">
-              <Link href="/portal">Research Portal</Link>
-            </Button>
+
             <Button asChild size="sm" className="bg-brand-600 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600 dark:text-ink-950">
               <Link href="/contact">
                 Start Your Research
@@ -201,11 +199,7 @@ export function Navbar() {
               </ul>
 
               <div className="mt-6 border-t border-ink-100 dark:border-ink-800 pt-6 flex flex-col gap-2">
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/portal" onClick={() => setOpen(false)}>
-                    Research Portal
-                  </Link>
-                </Button>
+
                 <Button asChild className="w-full bg-brand-600 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600 dark:text-ink-950">
                   <Link href="/contact" onClick={() => setOpen(false)}>
                     Start Your Research

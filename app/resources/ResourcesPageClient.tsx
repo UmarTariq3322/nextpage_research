@@ -198,29 +198,7 @@ export default function ResourcesPageClient() {
           </>
         )}
 
-        <div className="mt-16 rounded-3xl border border-ink-200 bg-ink-50/60 p-10 text-center sm:p-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-              <Sparkles className="h-4.5 w-4.5" />
-            </div>
-            <h3 className="text-xl font-bold text-ink-900 sm:text-2xl">
-              Want more? This structure is ready for a CMS backend.
-            </h3>
-          </div>
-          <p className="mx-auto max-w-2xl text-sm text-ink-600 sm:text-base">
-            Articles currently use demo placeholders. The data model in{" "}
-            <code className="rounded bg-white px-1.5 py-0.5 text-[12px] ring-1 ring-ink-200">
-              data/content.ts
-            </code>{" "}
-            is designed to easily connect to MDX, a headless CMS, or a database later.
-          </p>
-          <Button asChild size="lg" className="mt-8">
-            <Link href="/contact">
-              Suggest a topic
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
+
       </section>
     </>
   );

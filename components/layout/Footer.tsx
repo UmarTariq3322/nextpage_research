@@ -1,147 +1,85 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Youtube, Instagram } from "lucide-react";
+import { Github, Linkedin, Youtube, Instagram, Mail } from "lucide-react";
 
-import { footerLinks } from "@/data/navigation";
+const socialLinks = [
+  { Icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-[#0077B5] hover:bg-[#0077B5]/10" },
+  { Icon: Github, href: "#", label: "GitHub", color: "hover:text-white hover:bg-white/10" },
+  { Icon: Youtube, href: "#", label: "YouTube", color: "hover:text-[#FF0000] hover:bg-[#FF0000]/10" },
+  { Icon: Instagram, href: "#", label: "Instagram", color: "hover:text-[#E1306C] hover:bg-[#E1306C]/10" },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-ink-200 dark:border-ink-800 bg-navy-950 dark:bg-ink-950 text-ink-200">
-      <div className="container py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg"
-            >
-              <Image
-                src="/logo.png"
-                alt="Nexpage Research"
-                width={664}
-                height={681}
-                className="h-20 w-auto object-contain"
-                sizes="80px"
-              />
-            </Link>
+    <footer className="relative border-t border-ink-800/40 bg-[#040914] text-ink-400 overflow-hidden">
+      {/* Very subtle glow effect */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent opacity-50"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-500/5 blur-[120px] rounded-full"
+      />
 
-            <p className="mt-4 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
-              Turn the next page of your Research Journey
-            </p>
+      <div className="container relative py-20 lg:py-24 flex flex-col items-center text-center">
+        <Link
+          href="/"
+          className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg transition-transform hover:scale-105"
+        >
+          <Image
+            src="/logo.png"
+            alt="Nexpage Research"
+            width={664}
+            height={681}
+            className="h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+            sizes="64px"
+          />
+        </Link>
 
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-400">
-              A research and innovation division of Nexpage Technologies. We
-              combine rigorous research methodology, modern AI, and dedicated
-              mentorship to help turn ideas into evidence-driven, published
-              work.
-            </p>
+        <p className="mt-8 max-w-md text-base leading-relaxed text-ink-300 font-medium">
+          Turn Research Ideas Into Impactful Work.
+        </p>
+        
+        <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-500">
+          The research and innovation division of Nexpage Technologies. Empowering students, researchers, and institutions with rigorous methodology and expert publication support.
+        </p>
 
-            <div className="mt-8 flex items-center gap-2">
-              {[
-                { Icon: Linkedin, href: footerLinks.connect[0].href, label: "LinkedIn" },
-                { Icon: Github, href: footerLinks.connect[1].href, label: "GitHub" },
-                { Icon: Youtube, href: footerLinks.connect[2].href, label: "YouTube" },
-                { Icon: Instagram, href: footerLinks.connect[3].href, label: "Instagram" },
-              ].map(({ Icon, href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-xl border border-ink-800 bg-navy-900/50 text-ink-300 transition hover:border-brand-600/50 hover:bg-navy-800 hover:text-brand-400"
-                >
-                  <Icon className="h-4 w-4" />
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-4">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-                Research
-              </h3>
-              <ul className="mt-5 space-y-3 text-sm">
-                {footerLinks.research.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="text-ink-400 transition hover:text-brand-400"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-                Programs
-              </h3>
-              <ul className="mt-5 space-y-3 text-sm">
-                {footerLinks.programs.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="text-ink-400 transition hover:text-brand-400"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-                Company
-              </h3>
-              <ul className="mt-5 space-y-3 text-sm">
-                {footerLinks.company.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="text-ink-400 transition hover:text-brand-400"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-                Connect
-              </h3>
-              <ul className="mt-5 space-y-3 text-sm">
-                {footerLinks.connect.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="text-ink-400 transition hover:text-brand-400"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="mt-10 flex items-center gap-4">
+          <a
+            href="mailto:research@nexpage.io"
+            className="inline-flex items-center gap-2 rounded-full border border-ink-800 bg-ink-900/50 px-5 py-2 text-sm font-medium text-ink-300 transition-all hover:border-brand-500/50 hover:text-brand-400 hover:bg-brand-950/30"
+          >
+            <Mail className="h-4 w-4" />
+            research@nexpage.io
+          </a>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-ink-800 pt-8 sm:flex-row sm:items-center">
-          <p className="text-xs text-ink-500">
-            © {new Date().getFullYear()} Nexpage Technologies. All rights
-            reserved.
+        <div className="mt-12 flex items-center gap-3">
+          {socialLinks.map(({ Icon, href, label, color }) => (
+            <Link
+              key={label}
+              href={href}
+              aria-label={label}
+              className={`grid h-11 w-11 place-items-center rounded-full bg-ink-900/40 text-ink-400 transition-all duration-300 ${color}`}
+            >
+              <Icon className="h-4.5 w-4.5" strokeWidth={1.5} />
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-20 flex flex-col items-center justify-between w-full border-t border-ink-800/40 pt-8 sm:flex-row">
+          <p className="text-sm text-ink-500">
+            © {new Date().getFullYear()} <span className="text-ink-300 font-medium">Nexpage Technologies</span>. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-500">
-            <Link href="/about" className="hover:text-brand-400">
+          <div className="mt-4 flex gap-6 text-sm font-medium text-ink-500 sm:mt-0">
+            <Link href="/about" className="hover:text-brand-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/about" className="hover:text-brand-400">
+            <Link href="/about" className="hover:text-brand-400 transition-colors">
               Terms of Use
             </Link>
-            <Link href="/contact" className="hover:text-brand-400">
+            <Link href="/contact" className="hover:text-brand-400 transition-colors">
               Contact
             </Link>
           </div>

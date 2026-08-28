@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     { url: `${baseUrl}/resources`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/portal`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+
   ];
 
   const projectPages: SitemapEntry[] = researchProjects.map((p) => ({

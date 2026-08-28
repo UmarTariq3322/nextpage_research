@@ -4,7 +4,6 @@ export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Research Services", href: "/services" },
-  { label: "Programs", href: "/programs" },
   { label: "Research", href: "/research" },
   { label: "Publications", href: "/publications" },
 
@@ -14,16 +13,10 @@ export const mainNav: NavItem[] = [
 export const footerLinks = {
   research: [
     { label: "Research Services", href: "/services" },
-    { label: "AI Research", href: "/services" },
     { label: "Systematic Reviews", href: "/services" },
     { label: "Meta-Analysis", href: "/services" },
     { label: "Data Science", href: "/services" },
     { label: "Publication Support", href: "/services" },
-  ],
-  programs: [
-    { label: "Research Foundations", href: "/programs" },
-    { label: "AI Research Program", href: "/programs" },
-    { label: "Systematic Review Program", href: "/programs" },
   ],
   company: [
     { label: "About", href: "/about" },

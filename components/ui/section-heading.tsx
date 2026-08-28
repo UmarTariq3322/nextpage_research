@@ -33,7 +33,7 @@ export function SectionHeading({
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
           className={cn(
-            "mb-3 inline-block text-sm font-semibold tracking-wider uppercase text-navy-700",
+            "mb-3 inline-block text-sm font-semibold tracking-wider uppercase text-navy-700 dark:text-brand-400",
             align === "center" ? "mx-auto" : ""
           )}
         >
@@ -46,7 +46,7 @@ export function SectionHeading({
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.05 }}
         className={cn(
-          "font-display text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl lg:text-5xl",
+          "font-display text-3xl font-bold tracking-tight text-ink-900 dark:text-ink-50 sm:text-4xl lg:text-5xl",
           align === "center" ? "mx-auto" : ""
         )}
       >
@@ -59,7 +59,7 @@ export function SectionHeading({
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className={cn(
-            "mt-5 text-base leading-relaxed text-ink-600 sm:text-lg",
+            "mt-5 text-base leading-relaxed text-ink-600 dark:text-ink-300 sm:text-lg",
             align === "center" ? "mx-auto max-w-2xl" : ""
           )}
         >

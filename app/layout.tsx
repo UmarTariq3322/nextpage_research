@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Nexpage Research",
   },
   description:
-    "Nexpage Research is a research and innovation division of Nexpage Technologies. Research methodology, AI-powered analysis, mentorship, and publication support for students, researchers, academics, and organizations.",
+    "Nexpage Research is a research and innovation division of Nexpage Technologies. Research methodology, statistical analysis, mentorship, and publication support for students, researchers, academics, and organizations.",
   keywords: [
     "Nexpage Research",
     "research consulting",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Nexpage Research",
     title: "Nexpage Research — Research. Innovate. Publish.",
     description:
-      "Research methodology, AI-powered analysis, mentorship, and publication support for students, researchers, academics, and organizations.",
+      "Research methodology, statistical analysis, mentorship, and publication support for students, researchers, academics, and organizations.",
     images: [
       {
         url: "/og.png",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nexpage Research — Research. Innovate. Publish.",
     description:
-      "Research methodology, AI-powered analysis, mentorship, and publication support for students, researchers, academics, and organizations.",
+      "Research methodology, statistical analysis, mentorship, and publication support for students, researchers, academics, and organizations.",
     images: ["/og.png"],
   },
   robots: {
@@ -100,7 +100,8 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans overflow-x-hidden bg-white dark:bg-ink-950 text-ink-900 dark:text-ink-50">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
           <a
