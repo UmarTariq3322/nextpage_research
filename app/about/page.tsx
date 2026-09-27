@@ -1,188 +1,230 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Target,
-  Lightbulb,
-  Brain,
-  Compass,
-  Sparkles,
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
+import { BookOpen, Cpu, FileText, Lightbulb, MessagesSquare, Network, Sigma, Users } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Arrow, ArrowLink, Button } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/accordion";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Badge } from "@/components/ui/badge";
-
-import Image from "next/image";
+import { PageHero, Section } from "@/components/site/primitives";
+import { SectionNav } from "@/components/site/SectionNav";
+import { AdvantageList, CoreValues, DisciplineContrast, Disciplines, LeaderRows } from "@/components/site/OrgBlocks";
+import { CtaBand } from "@/components/site/CtaBand";
+import { expertiseAreas, mission, progression, strategicGoals, vision } from "@/content/organization";
+import { leaders } from "@/content/team";
+import { communityCta } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About",
   description:
-    "Nexpage Research is a research and innovation division of Nexpage Technologies. We combine rigorous research methodology with modern AI to help researchers move from ideas to published work.",
-  alternates: {
-    canonical: "/about",
-  },
+    "Nexpage Research's vision, mission and core values: a research-focused education and collaboration organization for students from every academic discipline.",
+  alternates: { canonical: "/about" },
 };
 
-const researchAreas = [
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Generative AI & LLMs",
-  "Data Science",
-  "Cybersecurity",
-  "Natural Language Processing",
-  "Systematic Reviews",
-  "Meta-Analysis",
-  "Applied Statistics",
-  "Research Automation",
-  "Research Methodology",
-  "Publication Support",
+const areaIcons = [BookOpen, MessagesSquare, Sigma, Network, Cpu];
+
+const sections = [
+  { id: "what-we-are", label: "What we are" },
+  { id: "vision-mission", label: "Vision & mission" },
+  { id: "values", label: "Values" },
+  { id: "difference", label: "What's different" },
+  { id: "who-we-serve", label: "Who we serve" },
+  { id: "leadership", label: "Leadership" },
 ];
+
+// The organization in one progression (Handbook 1.1).
+const stages = [
+  { icon: Lightbulb, title: "Research Ideas", body: "Students arrive with a question worth asking." },
+  { icon: FileText, title: "Publishable Evidence", body: "The Academy teaches the methods to answer it rigorously." },
+  { icon: Users, title: "Research Community", body: "Members keep producing research together." },
+];
+
+function ProgressionAside() {
+  return (
+    <figure className="relative hidden overflow-hidden rounded-lg border border-line bg-surface p-6 shadow-lg sm:block sm:p-8">
+      <figcaption className="t-label">Nexpage in one line</figcaption>
+      <ol className="relative mt-6">
+        <span aria-hidden className="draw-y absolute bottom-7 left-5 top-7 w-px bg-gradient-to-b from-line-strong via-accent/60 to-accent" />
+        {stages.map((s, i) => {
+          const last = i === stages.length - 1;
+          return (
+            <li key={s.title} className="relative flex gap-5 py-3.5">
+              <span
+                className={
+                  last
+                    ? "relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent text-accent-on"
+                    : "relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line-strong bg-surface text-fg-soft"
+                }
+              >
+                <s.icon className="h-[18px] w-[18px]" aria-hidden />
+              </span>
+              <div>
+                <p className="font-display text-lg font-semibold tracking-tight">{s.title}</p>
+                <p className="mt-0.5 text-sm text-fg-soft">{s.body}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </figure>
+  );
+}
 
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-grid-brand bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]"
-        />
-        <div className="container">
-          <div className="max-w-3xl">
-            <Badge variant="default" className="mb-5">
-              About Nexpage Research
-            </Badge>
-            <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink-950 sm:text-5xl lg:text-6xl">
-              A research and innovation division of{" "}
-              <span className="bg-gradient-to-br from-brand-600 via-brand-600 to-brand-500 bg-clip-text text-transparent">
-                Nexpage Technologies
-              </span>
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ink-600">
-              We exist to make high-quality research accessible to everyone who
-              has a serious question to answer. Our philosophy combines
-              methodological rigor, modern AI and data tooling, and hands-on
-              mentorship so ideas become impactful, published work.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link href="/contact">
-                  Work with us
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/services">Explore our services</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About Nexpage Research"
+        title="A research-focused education and collaboration organization."
+        lead="We teach students from every discipline to conduct meaningful, ethical and scientifically sound research."
+        actions={
+          <>
+            <Button asChild size="lg">
+              <Link href="/academy">
+                Explore the Academy <Arrow />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="#leadership">Meet the leadership</Link>
+            </Button>
+          </>
+        }
+        aside={<ProgressionAside />}
+      />
 
-      <section className="py-20 lg:py-24">
-        <div className="container grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
-          <div>
+      <SectionNav items={sections} />
+
+      {/* What we are */}
+      <Section id="what-we-are" labelledBy="offer-title" className="scroll-mt-32">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+          <div className="lg:sticky lg:top-40 lg:self-start">
             <SectionHeading
-              eyebrow="Who we are"
-              title="A research-led team, not a course factory."
-              description="Nexpage Research is a research and innovation division of Nexpage Technologies. We are methodologists, AI researchers, statisticians, and writers who work on real research every day. We bring that hands-on experience to every collaboration and program we run."
+              id="offer-title"
+              eyebrow="What we are"
+              title="More than a lecture series."
+              description={progression.summary}
             />
           </div>
-          <div className="grid gap-4">
-            {[
-              {
-                Icon: Target,
-                title: "Why we exist",
-                text: "Good research is too often blocked by access to methodology, training, and tooling. We build structures to remove those blockers for students, researchers, and organizations with serious questions to pursue.",
-              },
-              {
-                Icon: Lightbulb,
-                title: "Our research philosophy",
-                text: "Rigour first. Research questions deserve honest methods, transparent reporting, and careful interpretation. AI amplifies our methods without replacing the responsibility of the researcher.",
-              },
-              {
-                Icon: Brain,
-                title: "Research + AI",
-                text: "We use AI and data tooling to accelerate the repetitive parts of research—search, extraction, initial analysis—while protecting the parts where human judgment and expertise are irreplaceable.",
-              },
-              {
-                Icon: Compass,
-                title: "Our approach",
-                text: "Clear scope, structured plans, transparent timelines, and direct communication. Every engagement, whether consulting or a cohort program, is designed around your actual research goals.",
-              },
-            ].map(({ Icon, title, text }) => (
-              <Card key={title} className="p-6">
-                <div className="flex gap-4">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-                    <Icon className="h-5 w-5" />
-                  </div>
+          <ul className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2">
+            {expertiseAreas.map((a, i) => {
+              const Icon = areaIcons[i];
+              const wide = i === expertiseAreas.length - 1;
+              return (
+                <li
+                  key={a.title}
+                  className={
+                    wide
+                      ? "group flex gap-4 bg-surface p-5 transition-colors hover:bg-subtle sm:col-span-2 sm:block sm:p-7"
+                      : "group flex gap-4 bg-surface p-5 transition-colors hover:bg-subtle sm:block sm:p-7"
+                  }
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-line text-fg-soft transition-colors group-hover:border-accent/40 group-hover:text-accent">
+                    <Icon className="h-[18px] w-[18px]" aria-hidden />
+                  </span>
                   <div>
-                    <h3 className="text-base font-semibold text-ink-900">
-                      {title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink-600">
-                      {text}
-                    </p>
+                    <h3 className="t-h3 sm:mt-5">{a.title}</h3>
+                    <p className="mt-1 text-sm text-fg-soft">{a.short}</p>
                   </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-20 lg:py-24 bg-ink-50/60">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Where we work"
-            title="Research Areas"
-            description="A cross-disciplinary scope that allows us to collaborate across computing, engineering, sciences, social sciences, and business."
-            align="center"
-            className="mx-auto"
-          />
-          <div className="mt-12 flex flex-wrap justify-center gap-2">
-            {researchAreas.map((area) => (
-              <Badge key={area} variant="outline" className="px-3 py-1.5 text-sm bg-white">
-                {area}
-              </Badge>
-            ))}
-          </div>
+      {/* Vision and mission */}
+      <Section id="vision-mission" tone="band" labelledBy="vm-title" className="scroll-mt-32">
+        <h2 id="vm-title" className="sr-only">
+          Vision and mission
+        </h2>
+        <div className="grid gap-px overflow-hidden rounded-lg bg-line lg:grid-cols-2">
+          {[
+            { label: "Vision", sub: "Where we are going", text: vision },
+            { label: "Mission", sub: "What we do every day", text: mission },
+          ].map((b) => (
+            <figure key={b.label} className="bg-paper p-7 sm:p-12">
+              <figcaption className="flex items-baseline justify-between gap-4">
+                <span className="t-label text-accent">{b.label}</span>
+                <span className="text-xs text-fg-mute">{b.sub}</span>
+              </figcaption>
+              <blockquote className="mt-6 font-display text-xl font-medium leading-snug tracking-tight sm:mt-8 sm:text-[1.75rem]">
+                {b.text}
+              </blockquote>
+            </figure>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="py-20 lg:py-24">
-        <div className="container">
-          <div className="overflow-hidden rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-brand-50 p-10 sm:p-14 lg:p-16">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/80 px-4 py-1.5 text-xs font-semibold text-brand-700">
-                <Sparkles className="h-3.5 w-3.5" />
-                Let's build something credible together.
-              </span>
-              <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-ink-950 sm:text-4xl lg:text-5xl">
-                Have a research question?
-              </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-600 sm:text-lg">
-                Whether you're at the very beginning of an idea or preparing for
-                submission, we can design a collaboration that meets you where
-                you are.
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg">
-                  <Link href="/contact">
-                    Start Your Research
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/services">View all services</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
+      <Section id="values" labelledBy="values-title" className="scroll-mt-32">
+        <SectionHeading
+          id="values-title"
+          layout="split"
+          eyebrow="Core values"
+          title="Seven principles behind every project."
+          description="They guide curriculum decisions, teaching practice and the conduct of every project."
+          className="mb-12"
+        />
+        <CoreValues />
+      </Section>
+
+      <Section id="difference" tone="subtle" labelledBy="adv-title" className="scroll-mt-32">
+        <SectionHeading
+          id="adv-title"
+          layout="split"
+          eyebrow="What makes Nexpage different"
+          title="Rigorous, practical and continuous."
+          action={<ArrowLink href="/academy">How the Academy works</ArrowLink>}
+          className="mb-10"
+        />
+        <AdvantageList />
+        <Accordion
+          summary={<span>Our strategic goals ({strategicGoals.length})</span>}
+          className="mt-8 border-t border-line pt-5"
+          panelClassName="pt-5"
+        >
+          <ol className="grid gap-x-10 gap-y-3 md:grid-cols-2">
+            {strategicGoals.map((g, i) => (
+              <li key={g} className="flex gap-4 text-sm text-fg-soft">
+                <span className="w-7 shrink-0 font-mono text-xs text-accent">G{i + 1}</span>
+                {g}
+              </li>
+            ))}
+          </ol>
+        </Accordion>
+      </Section>
+
+      <Section id="who-we-serve" labelledBy="serve-title" className="scroll-mt-32">
+        <SectionHeading
+          id="serve-title"
+          layout="split"
+          eyebrow="Who we serve"
+          title="Every academic discipline."
+          description="The research process is shared across fields. Field-specific examples and specialist sessions are added where methods differ."
+          className="mb-12"
+        />
+        <DisciplineContrast />
+        <div className="mt-10">
+          <Disciplines />
         </div>
-      </section>
+      </Section>
+
+      <Section id="leadership" tone="subtle" labelledBy="lead-title" className="scroll-mt-32">
+        <SectionHeading
+          id="lead-title"
+          layout="split"
+          eyebrow="Leadership"
+          title="The people behind Nexpage Research."
+          action={<ArrowLink href="/team">Full profiles and structure</ArrowLink>}
+          className="mb-10"
+        />
+        <LeaderRows leaders={leaders} />
+      </Section>
+
+      <CtaBand
+        title="Be part of what we are building."
+        body="Learn research the rigorous way, then keep doing it with a community."
+        secondary={communityCta}
+        showDirect
+      />
     </>
   );
 }

@@ -2,9 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Nexpage Research design tokens.
+ * Colors are space-separated RGB so Tailwind opacity modifiers work.
+ * Palette: near-black navy (primary), cool slate (secondary text),
+ * one restrained academic blue (accent), warm white background.
+ */
 @layer base {
   :root {
-    color-scheme: light dark;
+    --paper: 250 250 248;
+    --surface: 255 255 255;
+    --subtle: 244 245 244;
+    --fg: 14 21 40;
+    --fg-soft: 68 80 102;
+    --fg-mute: 99 111 133;
+    --line: 229 231 235;
+    --line-strong: 208 213 221;
+    --primary: 14 21 40;
+    --on-primary: 255 255 255;
+    --accent: 46 72 196;
+    --accent-strong: 34 55 160;
+    --accent-soft: 236 240 253;
+    --on-accent: 255 255 255;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 2px rgb(14 21 40 / 0.05);
+    --shadow-md: 0 1px 2px rgb(14 21 40 / 0.04), 0 8px 24px -12px rgb(14 21 40 / 0.14);
+    --shadow-lg: 0 2px 4px rgb(14 21 40 / 0.04), 0 24px 48px -24px rgb(14 21 40 / 0.22);
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+    color-scheme: light;
+  }
+
+  .dark {
+    --paper: 8 11 20;
+    --surface: 14 19 33;
+    --subtle: 11 15 27;
+    --fg: 234 237 243;
+    --fg-soft: 172 181 199;
+    --fg-mute: 134 145 166;
+    --line: 30 38 58;
+    --line-strong: 46 56 80;
+    --primary: 234 237 243;
+    --on-primary: 8 11 20;
+    --accent: 138 156 255;
+    --accent-strong: 172 185 255;
+    --accent-soft: 24 31 64;
+    --on-accent: 8 11 20;
+    --shadow-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 24px 48px -24px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+
+  /* Deep-navy band. Re-maps tokens so everything inside inverts. */
+  .band {
+    --paper: 13 20 40;
+    --surface: 20 28 52;
+    --subtle: 17 25 47;
+    --fg: 240 242 247;
+    --fg-soft: 181 190 210;
+    --fg-mute: 139 150 176;
+    --line: 36 47 76;
+    --line-strong: 56 68 102;
+    --primary: 240 242 247;
+    --on-primary: 13 20 40;
+    --accent: 150 167 255;
+    --accent-strong: 185 197 255;
+    --accent-soft: 30 40 80;
+    --on-accent: 13 20 40;
+    background-color: rgb(var(--paper));
+    color: rgb(var(--fg));
+  }
+  .dark .band {
+    --paper: 15 22 42;
   }
 
   html {
@@ -13,44 +84,152 @@
   }
 
   body {
-    @apply antialiased transition-colors duration-300;
-    font-feature-settings: "ss01", "cv11", "cv02";
+    @apply bg-paper text-fg antialiased;
+    font-feature-settings: "cv11", "ss01";
   }
 
   *::selection {
-    @apply bg-brand-200/60 text-ink-950 dark:bg-brand-500/40 dark:text-brand-50;
+    @apply bg-accent/20 text-fg;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.01em;
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-fg;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
   }
 }
 
-@layer utilities {
-  .font-display {
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+@layer components {
+  /* Type scale */
+  .t-display {
+    @apply font-display text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[4.5rem];
+  }
+  .t-h1 {
+    @apply font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.5rem];
+  }
+  .t-h2 {
+    @apply font-display text-3xl font-semibold leading-[1.1] tracking-[-0.025em] sm:text-4xl lg:text-[2.75rem];
+  }
+  .t-h3 {
+    @apply font-display text-lg font-semibold leading-snug tracking-[-0.01em];
+  }
+  .t-lead {
+    @apply text-lg leading-relaxed text-fg-soft sm:text-xl;
+  }
+  .t-body {
+    @apply text-base leading-relaxed text-fg-soft;
+  }
+  .t-label {
+    @apply font-mono text-[0.72rem] font-medium uppercase tracking-[0.12em] text-fg-mute;
   }
 
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  /* Surfaces */
+  .surface {
+    @apply rounded-lg border border-line bg-surface;
+  }
+  .surface-interactive {
+    @apply rounded-lg border border-line bg-surface transition-[transform,border-color,box-shadow,background-color] duration-200 ease-brand hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md;
   }
 
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .grid-lines {
+    background-image: linear-gradient(to right, rgb(var(--line) / 0.6) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--line) / 0.6) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
+}
 
-  .line-clamp-4 {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+/* Motion ------------------------------------------------------------- */
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes draw-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+    .draw-x {
+      transform-origin: left;
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+    .draw-y {
+      transform-origin: top;
+      animation: draw-y linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 60%;
+    }
+  }
+}
+
+/* Reading progress under the navbar, driven by page scroll (CSS only). */
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.scroll-progress {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+/* Arrow nudge on hover for tertiary links and buttons. */
+.group:hover .arrow-nudge,
+.group:focus-visible .arrow-nudge {
+  transform: translateX(3px);
+}
+.arrow-nudge {
+  transition: transform 180ms var(--ease-out);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -61,5 +240,9 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  /* Scroll-linked, not time-based: keep it working. */
+  .scroll-progress {
+    animation-duration: auto !important;
   }
 }
