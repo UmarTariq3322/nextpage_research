@@ -78,6 +78,27 @@
     --paper: 15 22 42;
   }
 
+  /* Light surface that ignores dark mode and bands (e.g. the contact form card). */
+  .surface-light {
+    --paper: 250 250 248;
+    --surface: 255 255 255;
+    --subtle: 244 245 244;
+    --fg: 14 21 40;
+    --fg-soft: 68 80 102;
+    --fg-mute: 99 111 133;
+    --line: 229 231 235;
+    --line-strong: 208 213 221;
+    --primary: 14 21 40;
+    --on-primary: 255 255 255;
+    --accent: 46 72 196;
+    --accent-strong: 34 55 160;
+    --accent-soft: 236 240 253;
+    --on-accent: 255 255 255;
+    background-color: rgb(var(--paper));
+    color: rgb(var(--fg));
+    color-scheme: light;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;

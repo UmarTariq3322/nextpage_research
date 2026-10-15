@@ -1,21 +1,17 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-
-import { Arrow } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/accordion";
 import { Tag } from "@/components/site/primitives";
 import { modules } from "@/content/curriculum";
 import { cn } from "@/lib/utils";
 
 const pad = (n: number) => String(n).padStart(2, "0");
-const href = (code: string) => `/curriculum#module-${code.toLowerCase()}`;
 
 /**
  * Homepage curriculum overview.
  * Desktop: module list (tabs) with a detail panel for the selected module.
- * Mobile: a compact linked list.
+ * Mobile: an accordion list. Topics open in place (one-page site).
  */
 export function CurriculumExplorer() {
   const [active, setActive] = React.useState(0);
@@ -107,12 +103,13 @@ export function CurriculumExplorer() {
                 <dd className="mt-2 text-sm font-medium text-fg">{mod.deliverable}</dd>
               </div>
             </dl>
-            <div className="relative mt-6 flex items-center justify-between">
-              <span className="text-sm text-fg-mute">{mod.topics.length} topics</span>
-              <Link href={href(mod.code)} className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-medium text-accent hover:text-accent-strong">
-                View module details <Arrow />
-              </Link>
-            </div>
+            <Accordion
+              summary={<span>View all {mod.topics.length} topics</span>}
+              className="relative mt-6 border-t border-line pt-4"
+              panelClassName="pt-4"
+            >
+              <Topics topics={mod.topics} />
+            </Accordion>
           </div>
         ))}
       </div>
@@ -121,17 +118,42 @@ export function CurriculumExplorer() {
       <ol className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface lg:hidden">
         {modules.map((mod, i) => (
           <li key={mod.code}>
-            <Link href={href(mod.code)} className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-subtle">
-              <span className="font-mono text-xs text-accent">{pad(i + 1)}</span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-display font-semibold tracking-tight text-fg">{mod.title}</span>
-                <span className="mt-0.5 block text-xs text-fg-mute">{mod.level}</span>
-              </span>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-fg-mute transition-colors group-hover:text-accent" aria-hidden />
-            </Link>
+            <Accordion
+              triggerClassName="px-5 py-4 hover:bg-subtle"
+              panelClassName="space-y-4 px-5 pb-5"
+              summary={
+                <span className="flex min-w-0 flex-1 items-baseline gap-4">
+                  <span className="font-mono text-xs text-accent">{pad(i + 1)}</span>
+                  <span className="min-w-0">
+                    <span className="block font-display text-base font-semibold tracking-tight text-fg">{mod.title}</span>
+                    <span className="mt-0.5 block text-xs font-normal text-fg-mute">{mod.level}</span>
+                  </span>
+                </span>
+              }
+            >
+              <p className="text-sm text-fg-soft">{mod.outcome}</p>
+              <p className="text-sm">
+                <span className="t-label mr-2">You produce</span>
+                <span className="font-medium text-fg">{mod.deliverable}</span>
+              </p>
+              <Topics topics={mod.topics} />
+            </Accordion>
           </li>
         ))}
       </ol>
     </>
+  );
+}
+
+function Topics({ topics }: { topics: readonly string[] }) {
+  return (
+    <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+      {topics.map((t) => (
+        <li key={t} className="flex gap-3 text-sm text-fg-soft">
+          <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+          {t}
+        </li>
+      ))}
+    </ul>
   );
 }

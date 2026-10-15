@@ -1,19 +1,31 @@
 /** @type {import('next').NextConfig} */
+
+// The site is a single page. Former routes redirect to their section anchor.
+const sections = {
+  about: "about",
+  team: "team",
+  academy: "academy",
+  curriculum: "academy",
+  community: "community",
+  workflow: "workflow",
+  contact: "contact",
+  // Routes from the original version of the site.
+  services: "academy",
+  programs: "academy",
+  research: "community",
+  publications: "about",
+  resources: "academy",
+  portal: "about",
+};
+
 const nextConfig = {
-  // Routes from the previous version of the site, mapped to their closest
-  // equivalent in the handbook-based structure.
   async redirects() {
-    return [
-      { source: "/services", destination: "/academy", permanent: true },
-      { source: "/programs", destination: "/curriculum", permanent: true },
-      { source: "/research", destination: "/community", permanent: true },
-      { source: "/research/:path*", destination: "/community", permanent: true },
-      { source: "/publications", destination: "/", permanent: true },
-      { source: "/publications/:path*", destination: "/", permanent: true },
-      { source: "/resources", destination: "/curriculum", permanent: true },
-      { source: "/resources/:path*", destination: "/curriculum", permanent: true },
-      { source: "/portal", destination: "/", permanent: true },
-    ];
+    return Object.entries(sections).flatMap(([route, anchor]) => [
+      { source: `/${route}`, destination: `/#${anchor}`, permanent: true },
+      ...(route === "team"
+        ? []
+        : [{ source: `/${route}/:path*`, destination: `/#${anchor}`, permanent: true }]),
+    ]);
   },
 };
 

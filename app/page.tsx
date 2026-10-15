@@ -1,21 +1,25 @@
+import { Suspense } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, FlaskConical, Network } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, FlaskConical, Mail, MessageCircle, Network } from "lucide-react";
 
-import { Arrow, ArrowLink, Button } from "@/components/ui/button";
+import { Arrow, Button } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/accordion";
 import { SectionHeading, SectionLabel } from "@/components/ui/section-heading";
-import { Section } from "@/components/site/primitives";
+import { PendingNote, Section } from "@/components/site/primitives";
 import { ResearchPathway } from "@/components/site/ResearchPathway";
 import { Journey } from "@/components/site/Journey";
 import { CurriculumExplorer } from "@/components/site/CurriculumExplorer";
-import { IdeaBoardVisual } from "@/components/site/CommunityBlocks";
+import { CommunityPrograms, ProjectRoles } from "@/components/site/CommunityBlocks";
+import { WorkflowExplorer } from "@/components/site/WorkflowExplorer";
 import { Disciplines, LeaderCard } from "@/components/site/OrgBlocks";
-import { CtaBand } from "@/components/site/CtaBand";
-import { communityHighlights, offer, outputs } from "@/content/home";
+import { ContactForm } from "@/components/site/ContactForm";
+import { offer, outputs } from "@/content/home";
 import { progressionLevels } from "@/content/academy";
 import { modules } from "@/content/curriculum";
-import { workflow } from "@/content/community";
+import { communityGuidelines, integrityCommitments, workflow } from "@/content/community";
+import { VisionMissionValues } from "@/components/site/VisionMissionValues";
 import { leaders } from "@/content/team";
-import { communityCta, primaryCta } from "@/content/site";
+import { communityCta, primaryCta, site } from "@/content/site";
 
 const offerIcons = [BookOpen, FlaskConical, Network];
 
@@ -26,12 +30,10 @@ const facts = [
   { value: progressionLevels.length, label: "Progression levels" },
 ];
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 export default function HomePage() {
   return (
     <>
-      {/* 1 — Hero */}
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-line" aria-labelledby="hero-title">
         <div aria-hidden className="grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_at_70%_40%,black_10%,transparent_70%)]" />
         <div className="container relative grid items-center gap-12 pb-16 pt-12 sm:pb-20 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:pb-28 lg:pt-24">
@@ -46,10 +48,10 @@ export default function HomePage() {
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row">
               <Button asChild size="lg">
-                <Link href={primaryCta.href}>
+                <a href={primaryCta.href}>
                   {primaryCta.label}
                   <Arrow />
-                </Link>
+                </a>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href={communityCta.href}>{communityCta.label}</Link>
@@ -71,14 +73,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2 — What we offer: three actionable entry points */}
-      <Section labelledBy="what-title">
+      {/* About */}
+      <Section id="about" labelledBy="about-title">
         <SectionHeading
-          id="what-title"
+          id="about-title"
           layout="split"
-          eyebrow="What is Nexpage Research"
+          eyebrow="About Nexpage Research"
           title="Research education. Collaboration. Community."
-          description="Structured research education, mentorship and collaboration that move students from ideas to meaningful evidence."
+          description="A research-focused education and collaboration organization that teaches students from every discipline to conduct meaningful, ethical and scientifically sound research."
           className="mb-12 lg:mb-16"
         />
         <ul className="grid gap-4 md:grid-cols-3">
@@ -86,10 +88,7 @@ export default function HomePage() {
             const Icon = offerIcons[i];
             return (
               <li key={o.title} className="reveal">
-                <Link
-                  href={o.href}
-                  className="surface-interactive group flex h-full gap-5 p-6 md:flex-col md:gap-0 md:p-8"
-                >
+                <a href={o.href} className="surface-interactive group flex h-full gap-5 p-6 md:flex-col md:gap-0 md:p-8">
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-accent-on">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
@@ -100,15 +99,18 @@ export default function HomePage() {
                       {o.cta} <Arrow />
                     </span>
                   </span>
-                </Link>
+                </a>
               </li>
             );
           })}
         </ul>
       </Section>
 
-      {/* 3 — Research journey */}
-      <Section tone="band" labelledBy="journey-title">
+      {/* Vision, mission and values */}
+      <VisionMissionValues />
+
+      {/* Journey */}
+      <Section labelledBy="journey-title">
         <SectionHeading
           id="journey-title"
           eyebrow="The research journey"
@@ -118,20 +120,19 @@ export default function HomePage() {
         <Journey />
       </Section>
 
-      {/* 4 — Academy */}
-      <Section labelledBy="academy-title">
+      {/* Academy */}
+      <Section id="academy" tone="subtle" labelledBy="academy-title">
         <SectionHeading
           id="academy-title"
           layout="split"
           eyebrow="The Academy"
           title="A research curriculum, not a lecture series."
-          description="Nine modules from research foundations to scientific writing and evidence synthesis. Each one ends in a real output."
-          action={<ArrowLink href="/curriculum">Explore the full curriculum</ArrowLink>}
+          description="Nine modules from research foundations to scientific writing and evidence synthesis. Methods are taught because a research question needs them, and each module ends in a real output."
           className="mb-12"
         />
         <CurriculumExplorer />
         <div className="mt-10 flex flex-col gap-4 border-t border-line pt-8 lg:flex-row lg:items-center lg:gap-10">
-          <p className="t-label shrink-0">What students build</p>
+          <p className="t-label shrink-0">Capstone portfolio</p>
           <ol className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium">
             {outputs.map((o, i) => (
               <li key={o} className="flex items-center gap-3">
@@ -141,111 +142,171 @@ export default function HomePage() {
             ))}
           </ol>
         </div>
+        <PendingNote title="Program delivery details are being finalized" className="mt-8 max-w-2xl bg-surface">
+          Format, duration, fees and certification will be announced.{" "}
+          <Link href="/?interest=academy#contact" className="font-medium text-accent underline-offset-4 hover:underline">
+            Ask to be notified
+          </Link>
+          .
+        </PendingNote>
       </Section>
 
-      {/* 5 — Research Community */}
-      <Section tone="subtle" labelledBy="community-title">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-20">
-          <div>
-            <SectionHeading
-              id="community-title"
-              eyebrow="Research Community"
-              title="Research doesn't stop after the Academy."
-              description="A structured environment to find collaborators, review each other's work and build projects together."
-            />
-            <ul className="mt-10 divide-y divide-line border-y border-line">
-              {communityHighlights.map((c) => (
-                <li key={c.title} className="grid gap-0.5 py-4 sm:grid-cols-[11rem_1fr] sm:items-baseline sm:gap-6">
-                  <span className="font-display font-semibold tracking-tight">{c.title}</span>
-                  <span className="text-sm text-fg-soft">{c.body}</span>
-                </li>
+      {/* Community */}
+      <Section id="community" labelledBy="community-title">
+        <SectionHeading
+          id="community-title"
+          layout="split"
+          eyebrow="Research Community"
+          title="Research doesn't stop after the Academy."
+          description="The Academy builds the skills. The Community is where they are used: a structured network where a research idea can find its collaborators."
+          action={
+            <Button asChild>
+              <Link href={communityCta.href}>
+                Join the Community <Arrow />
+              </Link>
+            </Button>
+          }
+          className="mb-12"
+        />
+        <CommunityPrograms />
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          <Accordion
+            summary={<span>Project roles in every Community project</span>}
+            className="rounded-lg border border-line bg-surface px-5 py-4"
+            panelClassName="pt-4"
+          >
+            <ProjectRoles />
+            <p className="mt-3 text-xs text-fg-mute">Roles are provided under the mentorship program.</p>
+          </Accordion>
+          <Accordion
+            summary={<span>Community guidelines</span>}
+            className="rounded-lg border border-line bg-surface px-5 py-4"
+            panelClassName="pt-4"
+          >
+            <ul className="list-disc space-y-2 pl-5 text-sm text-fg-soft">
+              {communityGuidelines.map((g) => (
+                <li key={g}>{g}</li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Button asChild>
-                <Link href={communityCta.href}>
-                  Join the Community <Arrow />
-                </Link>
-              </Button>
-              <ArrowLink href="/community">How it works</ArrowLink>
-            </div>
-          </div>
-          <div className="rounded-lg border border-line bg-paper p-5 shadow-lg sm:p-8">
-            <div className="mb-5 flex items-center justify-between">
-              <span className="t-label">Research idea board</span>
-              <span className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] text-fg-mute">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" /> open
-              </span>
-            </div>
-            <IdeaBoardVisual />
-          </div>
+          </Accordion>
         </div>
       </Section>
 
-      {/* 6 — Workflow: each phase deep-links to its detail */}
-      <Section labelledBy="workflow-title" size="compact">
+      {/* Workflow */}
+      <Section id="workflow" tone="subtle" labelledBy="workflow-title">
         <SectionHeading
           id="workflow-title"
           layout="split"
           eyebrow="Research workflow"
           title="Ten phases, each with a defined output."
-          description="Every project follows a structured lifecycle with quality checks along the way. Select a phase to see what happens in it."
-          action={<ArrowLink href="/workflow">View the research workflow</ArrowLink>}
-          className="mb-10 lg:mb-12"
+          description="Every Academy capstone and Community project follows the same lifecycle, with a quality check before work proceeds."
+          className="mb-12"
         />
-        {/* Swipeable on small screens; the edge fade hints that it scrolls. */}
-        <div className="-mx-5 overflow-x-auto px-5 pb-3 [mask-image:linear-gradient(to_right,black_80%,transparent)] sm:mx-0 sm:px-0 lg:overflow-visible lg:pb-0 lg:[mask-image:none]">
-          <ol className="relative grid min-w-[56rem] grid-cols-10 gap-3 lg:min-w-0" aria-label="Research lifecycle">
-            <span aria-hidden className="draw-x absolute left-2 right-2 top-[7px] h-px bg-gradient-to-r from-line-strong to-accent" />
-            {workflow.map((p) => (
-              <li key={p.n}>
-                <Link href={`/workflow#phase-${p.n}`} className="group relative block rounded-sm pb-1">
-                  <span className="relative z-10 block h-[15px] w-[15px] rounded-full border border-line-strong bg-paper transition-colors duration-200 group-hover:border-accent group-hover:bg-accent" />
-                  <span className="mt-4 block font-mono text-[0.68rem] text-fg-mute transition-colors group-hover:text-accent">
-                    {pad(p.n)}
-                  </span>
-                  <span className="mt-0.5 block text-sm font-medium transition-colors group-hover:text-accent">{p.title}</span>
-                </Link>
+        <WorkflowExplorer />
+        <Accordion
+          summary={<span>Research quality and integrity</span>}
+          className="mt-10 border-y border-line py-4"
+          panelClassName="pt-5"
+        >
+          <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+            {integrityCommitments.map((c) => (
+              <li key={c.title}>
+                <p className="text-sm font-semibold">{c.title}</p>
+                <p className="mt-0.5 text-sm text-fg-soft">{c.short}</p>
               </li>
             ))}
-          </ol>
-        </div>
+          </ul>
+        </Accordion>
       </Section>
 
-      {/* 7 — Who we serve */}
-      <Section tone="subtle" labelledBy="serve-title" size="compact">
+      {/* Who we serve */}
+      <Section labelledBy="serve-title" size="compact">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.7fr] lg:gap-20">
           <SectionHeading
             id="serve-title"
             eyebrow="Who we serve"
             title="Built for researchers across disciplines."
-            description="One shared research process, with field-specific adaptations where needed."
+            description="One shared research process, with field-specific examples and specialist sessions where methods differ."
           />
           <Disciplines />
         </div>
       </Section>
 
-      {/* 8 — Leadership */}
-      <Section labelledBy="team-title">
+      {/* Team */}
+      <Section id="team" tone="subtle" labelledBy="team-title">
         <SectionHeading
           id="team-title"
           layout="split"
           eyebrow="Leadership"
           title="Research, teaching and technology."
-          action={<ArrowLink href="/team">Meet the team</ArrowLink>}
+          description="A multidisciplinary team, where every role exists to support research."
           className="mb-10 lg:mb-14"
         />
-        <ul className="grid gap-6 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-8">
+        <ul className="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-8">
           {leaders.map((l) => (
             <li key={l.slug} className="reveal">
-              <LeaderCard leader={l} compact />
+              <LeaderCard leader={l} />
             </li>
           ))}
         </ul>
       </Section>
 
-      {/* 9 — Final CTA */}
-      <CtaBand showDirect />
+      {/* Contact */}
+      <section id="contact" aria-labelledby="contact-title" className="band relative overflow-hidden py-24 lg:py-32">
+        <div aria-hidden className="grid-lines absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_70%)]" />
+        <div className="container relative grid gap-14 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
+          <div>
+            <SectionLabel>Contact</SectionLabel>
+            <h2 id="contact-title" className="t-display mt-6 text-[2.5rem] sm:text-6xl">
+              Have a research idea?
+            </h2>
+            <p className="t-lead mt-6 max-w-md">
+              Ask about the Academy, join the Research Community or tell us about your idea.
+            </p>
+            <ul className="mt-10 divide-y divide-line border-y border-line">
+              {[
+                { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail, external: false },
+                { label: "WhatsApp", value: site.whatsapp.display, href: site.whatsapp.link, icon: MessageCircle, external: true },
+              ].map((c) => (
+                <li key={c.label}>
+                  <a
+                    href={c.href}
+                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="group flex items-center gap-4 py-4"
+                  >
+                    <c.icon className="h-[18px] w-[18px] shrink-0 text-fg-mute transition-colors group-hover:text-accent" aria-hidden />
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs text-fg-mute">{c.label}</span>
+                      <span className="block break-all font-medium transition-colors group-hover:text-accent">{c.value}</span>
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-fg-mute" aria-hidden />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              {site.social.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="font-medium text-fg-soft transition-colors hover:text-fg">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* The form keeps the light surface for legibility */}
+          <div className="surface-light rounded-lg p-6 shadow-lg sm:p-10">
+            <h3 className="t-h3 text-2xl">Send a message</h3>
+            <p className="mt-2 text-sm text-fg-soft">
+              Your message opens in your email app or WhatsApp, ready to send. Nothing is stored on this website.
+            </p>
+            <Suspense>
+              <ContactForm />
+            </Suspense>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

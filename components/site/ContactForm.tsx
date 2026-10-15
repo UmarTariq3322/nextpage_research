@@ -58,6 +58,14 @@ export function ContactForm() {
     interest: initialInterest,
     message: module && /^[A-I]$/.test(module) ? `I would like to know more about Module ${module}.\n\n` : "",
   });
+  // On the one-page site, "Join"/"Ask" links change ?interest= without a reload.
+  const interestParam = params.get("interest");
+  React.useEffect(() => {
+    if (interestParam && interests.some((i) => i.value === interestParam)) {
+      setValues((v) => ({ ...v, interest: interestParam }));
+    }
+  }, [interestParam]);
+
   const [errors, setErrors] = React.useState<Errors>({});
   const [sentVia, setSentVia] = React.useState<"email" | "whatsapp" | null>(null);
 
