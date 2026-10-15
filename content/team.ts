@@ -18,7 +18,7 @@ export const leaders: Leader[] = [
     slug: "muhammad-shamikh-shahid",
     name: "Muhammad Shamikh Shahid",
     title: "Founder and Chief Executive Officer",
-    photo: { src: "/team/muhammad-shamikh-shahid.png", width: 400, height: 400 },
+    photo: { src: "/images/team/muhammad-shamikh-shahid.png", width: 400, height: 400 },
     summary:
       "Founded Nexpage Research and leads it as CEO, connecting research, teaching and technology.",
     bio: [
@@ -44,7 +44,7 @@ export const leaders: Leader[] = [
     slug: "muhammad-areeb-ul-haq",
     name: "Muhammad Areeb Ul Haq",
     title: "Lead Mentor",
-    photo: { src: "/team/muhammad-areeb-ul-haq.jpg", width: 750, height: 750 },
+    photo: { src: "/images/team/muhammad-areeb-ul-haq.jpg", width: 750, height: 750 },
     summary:
       "Co-leads the Academic and Research and the Statistics and Methods functions.",
     bio: [
@@ -60,7 +60,7 @@ export const leaders: Leader[] = [
     slug: "muhammad-umar-tariq",
     name: "Muhammad Umar Tariq",
     title: "Co-founder and Chief Technology Officer",
-    photo: { src: "/team/muhammad-umar-tariq.jpg", width: 396, height: 399 },
+    photo: { src: "/images/team/muhammad-umar-tariq.jpg", width: 396, height: 399 },
     summary:
       "Leads Technology and Digital: the platforms, website and infrastructure behind learning and collaboration.",
     bio: [
