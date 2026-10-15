@@ -6,19 +6,19 @@ export const offer = [
     title: "Research Education",
     body: "Learn the methods behind meaningful research.",
     cta: "Explore the Academy",
-    href: "/academy",
+    href: "#academy",
   },
   {
     title: "Research Projects",
     body: "Apply them to real research questions and evidence.",
     cta: "See how projects run",
-    href: "/workflow",
+    href: "#workflow",
   },
   {
     title: "Research Community",
     body: "Keep learning and collaborating beyond the Academy.",
     cta: "Explore the Community",
-    href: "/community",
+    href: "#community",
   },
 ] as const;
 

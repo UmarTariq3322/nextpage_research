@@ -1,13 +1,8 @@
 import type { MetadataRoute } from "next";
 
-import { allPages, site } from "@/content/site";
+import { site } from "@/content/site";
 
+// One-page site: the homepage is the only URL.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  return allPages.map(({ href }) => ({
-    url: `${site.url}${href === "/" ? "" : href}`,
-    lastModified,
-    changeFrequency: "monthly",
-    priority: href === "/" ? 1 : href === "/contact" ? 0.6 : 0.8,
-  }));
+  return [{ url: site.url, lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
 }

@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { Arrow } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/accordion";
 import { Tag } from "@/components/site/primitives";
 import { acrossDisciplines, advantages, coreValues, disciplines } from "@/content/organization";
 import type { Leader } from "@/content/team";
@@ -91,42 +90,62 @@ export function Initials({ name, className, tone = "subtle" }: { name: string; c
   );
 }
 
-/** Profile card: portrait (or a neutral monogram), name, role, one line. */
-export function LeaderCard({ leader, compact = false }: { leader: Leader; compact?: boolean }) {
-  // Compact cards are a thumbnail row on phones and a portrait card from `sm` up.
-  const body = (
-    <>
-      <div className={cn("relative overflow-hidden rounded-md bg-subtle", compact ? "aspect-square sm:aspect-[4/5]" : "aspect-[4/5]")}>
-        {leader.photo ? (
-          <Image
-            src={leader.photo.src}
-            alt={`Portrait of ${leader.name}`}
-            fill
-            sizes={compact ? "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 88px" : "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"}
-            className="object-cover object-[50%_25%] transition-transform duration-500 ease-brand group-hover:scale-[1.03]"
-          />
-        ) : (
-          <Initials name={leader.name} className="absolute inset-0" />
-        )}
+/**
+ * Leader card for the one-page site: portrait (thumbnail row on phones),
+ * role and summary, with key facts and the full biography opening in place.
+ */
+export function LeaderCard({ leader }: { leader: Leader }) {
+  return (
+    <article id={leader.slug} aria-labelledby={`${leader.slug}-name`} className="group flex h-full scroll-mt-24 flex-col">
+      <div className="grid grid-cols-[5.5rem_1fr] items-start gap-4 sm:block">
+        <div className="relative aspect-square overflow-hidden rounded-md bg-subtle sm:aspect-[4/5]">
+          {leader.photo ? (
+            <Image
+              src={leader.photo.src}
+              alt={`Portrait of ${leader.name}`}
+              fill
+              sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 88px"
+              className="object-cover object-[50%_25%] transition-transform duration-500 ease-brand group-hover:scale-[1.03]"
+            />
+          ) : (
+            <Initials name={leader.name} tone="band" className="absolute inset-0" />
+          )}
+        </div>
+        <div className="sm:pt-5">
+          <p className="t-label text-[0.66rem] sm:text-[0.72rem]">{leader.title}</p>
+          <h3 id={`${leader.slug}-name`} className="t-h3 mt-1.5 text-lg sm:mt-2 sm:text-xl">
+            {leader.name}
+          </h3>
+          <p className="mt-2 text-sm text-fg-soft">{leader.summary}</p>
+        </div>
       </div>
-      <div className={compact ? "sm:pt-5" : "pt-5"}>
-        <p className="t-label text-[0.66rem] sm:text-[0.72rem]">{leader.title}</p>
-        <h3 className="t-h3 mt-1.5 text-lg sm:mt-2 sm:text-xl">{leader.name}</h3>
-        <p className="mt-2 text-sm text-fg-soft">{leader.summary}</p>
-        {compact && (
-          <span className="mt-3 hidden items-center gap-1.5 text-sm font-medium text-accent sm:inline-flex">
-            Profile <Arrow />
-          </span>
-        )}
-      </div>
-    </>
-  );
-  return compact ? (
-    <Link href={`/team#${leader.slug}`} className="group grid grid-cols-[5.5rem_1fr] items-start gap-4 rounded-md sm:block">
-      {body}
-    </Link>
-  ) : (
-    <article className="group">{body}</article>
+      <Accordion
+        summary={<span>Profile details</span>}
+        className="mt-5 border-t border-line pt-3 sm:mt-auto"
+        panelClassName="pt-4"
+      >
+        <dl className="divide-y divide-line border-y border-line">
+          {leader.facts.map((f, i) => (
+            <div key={i} className="py-2.5">
+              <dt className="t-label">{f.label}</dt>
+              <dd className="mt-1 text-sm text-fg">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Areas of responsibility">
+          {leader.focus.map((f) => (
+            <li key={f}>
+              <Tag>{f}</Tag>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 space-y-3 text-sm text-fg-soft">
+          {leader.bio.map((p) => (
+            <p key={p.slice(0, 32)}>{p}</p>
+          ))}
+        </div>
+      </Accordion>
+    </article>
   );
 }
 
@@ -154,48 +173,5 @@ export function DisciplineContrast() {
         </ul>
       </div>
     </div>
-  );
-}
-
-/** Leadership as profile rows: photo, role, summary and areas of responsibility. */
-export function LeaderRows({ leaders }: { leaders: Leader[] }) {
-  return (
-    <ul className="divide-y divide-line border-y border-line">
-      {leaders.map((l) => (
-        <li key={l.slug}>
-          <Link
-            href={`/team#${l.slug}`}
-            className="group grid grid-cols-[4rem_1fr] gap-x-4 gap-y-4 py-6 transition-colors sm:grid-cols-[6rem_1fr] sm:gap-x-8 sm:py-7 lg:grid-cols-[6rem_1.1fr_1fr_auto] lg:items-center"
-          >
-            <div className="relative h-16 w-16 overflow-hidden rounded-md bg-subtle sm:h-24 sm:w-24">
-              {l.photo ? (
-                <Image
-                  src={l.photo.src}
-                  alt={`Portrait of ${l.name}`}
-                  fill
-                  sizes="96px"
-                  className="object-cover object-[50%_20%] transition-transform duration-500 ease-brand group-hover:scale-105"
-                />
-              ) : (
-                <Initials name={l.name} className="absolute inset-0" />
-              )}
-            </div>
-            <div>
-              <p className="t-label">{l.title}</p>
-              <h3 className="t-h3 mt-1.5 text-lg transition-colors group-hover:text-accent sm:mt-2 sm:text-xl">{l.name}</h3>
-              <p className="mt-1.5 text-sm text-fg-soft">{l.summary}</p>
-            </div>
-            <ul className="hidden flex-wrap gap-1.5 sm:col-start-2 sm:flex lg:col-start-auto" aria-label="Areas of responsibility">
-              {l.focus.slice(0, 4).map((f) => (
-                <li key={f}>
-                  <Tag>{f}</Tag>
-                </li>
-              ))}
-            </ul>
-            <Arrow className="hidden text-fg-mute transition-colors group-hover:text-accent lg:block" />
-          </Link>
-        </li>
-      ))}
-    </ul>
   );
 }

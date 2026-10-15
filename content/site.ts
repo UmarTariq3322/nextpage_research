@@ -22,46 +22,21 @@ export const site = {
   parent: "Nexpage Technologies",
 } as const;
 
-export type NavLink = { label: string; href: string; description?: string };
-export type NavItem = NavLink & { children?: NavLink[] };
+export type NavLink = { label: string; href: string };
 
-export const mainNav: NavItem[] = [
-  { label: "Home", href: "/" },
-  {
-    label: "About",
-    href: "/about",
-    children: [
-      { label: "About Nexpage", href: "/about", description: "Vision, mission and values" },
-      { label: "Team", href: "/team", description: "Leadership and structure" },
-    ],
-  },
-  {
-    label: "Academy",
-    href: "/academy",
-    children: [
-      { label: "Overview", href: "/academy", description: "How the Academy teaches research" },
-      { label: "Curriculum", href: "/curriculum", description: "Nine modules, foundations to publication" },
-    ],
-  },
-  { label: "Research Community", href: "/community" },
-  { label: "Research", href: "/workflow" },
-  { label: "Contact", href: "/contact" },
+/** One-page site: every nav item is a section anchor on the homepage. */
+export const mainNav: NavLink[] = [
+  { label: "About", href: "#about" },
+  { label: "Academy", href: "#academy" },
+  { label: "Community", href: "#community" },
+  { label: "Workflow", href: "#workflow" },
+  { label: "Team", href: "#team" },
+  { label: "Contact", href: "#contact" },
 ];
 
-/** Every public page, flattened (sitemap, 404 suggestions). */
-export const allPages: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Team", href: "/team" },
-  { label: "Academy", href: "/academy" },
-  { label: "Curriculum", href: "/curriculum" },
-  { label: "Research Community", href: "/community" },
-  { label: "Research Workflow", href: "/workflow" },
-  { label: "Contact", href: "/contact" },
-];
-
-export const primaryCta = { label: "Explore the Academy", href: "/academy" };
+export const primaryCta = { label: "Explore the Academy", href: "#academy" };
 export const communityCta = {
   label: "Join the Research Community",
-  href: "/contact?interest=community",
+  // The contact form reads ?interest= to preselect the topic.
+  href: "/?interest=community#contact",
 };

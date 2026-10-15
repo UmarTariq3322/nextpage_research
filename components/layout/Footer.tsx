@@ -1,18 +1,9 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { Logo } from "@/components/layout/Logo";
-import { site } from "@/content/site";
+import { mainNav, site } from "@/content/site";
 
-const nav = [
-  { label: "Academy", href: "/academy" },
-  { label: "Curriculum", href: "/curriculum" },
-  { label: "Research Community", href: "/community" },
-  { label: "Research", href: "/workflow" },
-  { label: "About", href: "/about" },
-  { label: "Team", href: "/team" },
-  { label: "Contact", href: "/contact" },
-];
+const nav = mainNav.map((n) => ({ label: n.label, href: `/${n.href}` }));
 
 export function Footer() {
   return (
@@ -30,9 +21,9 @@ export function Footer() {
             <ul className="grid grid-cols-2 gap-x-8 gap-y-2.5 sm:grid-cols-[repeat(3,max-content)] sm:gap-x-10">
               {nav.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-fg-soft transition-colors hover:text-fg">
+                  <a href={l.href} className="text-sm text-fg-soft transition-colors hover:text-fg">
                     {l.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

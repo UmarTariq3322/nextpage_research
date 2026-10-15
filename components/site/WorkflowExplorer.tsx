@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 
+import { Accordion } from "@/components/ui/accordion";
 import { workflow } from "@/content/community";
 import { cn } from "@/lib/utils";
 
@@ -149,30 +150,39 @@ export function WorkflowExplorer() {
         </div>
       </div>
 
-      {/* Mobile: vertical timeline */}
-      <ol className="relative lg:hidden">
-        <span aria-hidden className="draw-y absolute bottom-6 left-[19px] top-6 w-px bg-gradient-to-b from-line-strong via-accent/60 to-accent" />
+      {/* Mobile: numbered timeline; each phase opens in place */}
+      <ol className="relative overflow-hidden rounded-lg border border-line bg-surface lg:hidden">
         {workflow.map((s) => (
-          <li key={s.n} data-phase={s.n} className="relative scroll-mt-24 pb-8 pl-14 last:pb-0">
-            <span className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full border border-line-strong bg-paper font-mono text-xs text-fg">
-              {pad(s.n)}
-            </span>
-            <h3 className="t-h3 pt-2 text-lg">{s.title}</h3>
-            <p className="mt-1 text-sm text-fg-soft">{s.activities}</p>
-            <dl className="mt-3 space-y-1 text-sm">
-              <div className="flex gap-2">
-                <dt className="w-24 shrink-0 text-fg-mute">Output</dt>
-                <dd className="text-fg">{s.output}</dd>
-              </div>
-              <div className="flex gap-2">
-                <dt className="w-24 shrink-0 text-fg-mute">Responsible</dt>
-                <dd className="text-fg">{s.responsible}</dd>
-              </div>
-              <div className="flex gap-2">
-                <dt className="w-24 shrink-0 text-fg-mute">Check</dt>
-                <dd className="text-fg">{s.check}</dd>
-              </div>
-            </dl>
+          <li key={s.n} data-phase={s.n} className="scroll-mt-24 border-b border-line last:border-0">
+            <Accordion
+              id={`phase-${s.n}-m`}
+              triggerClassName="px-4 py-3.5 hover:bg-subtle"
+              panelClassName="px-4 pb-5 pl-[3.75rem]"
+              summary={
+                <span className="flex items-center gap-4">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line-strong font-mono text-[0.68rem] text-fg">
+                    {pad(s.n)}
+                  </span>
+                  <span className="font-display text-base font-semibold tracking-tight">{s.title}</span>
+                </span>
+              }
+            >
+              <p className="text-sm text-fg-soft">{s.activities}</p>
+              <dl className="mt-3 space-y-1.5 text-sm">
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-fg-mute">Output</dt>
+                  <dd className="text-fg">{s.output}</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-fg-mute">Responsible</dt>
+                  <dd className="text-fg">{s.responsible}</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-fg-mute">Check</dt>
+                  <dd className="text-fg">{s.check}</dd>
+                </div>
+              </dl>
+            </Accordion>
           </li>
         ))}
       </ol>
