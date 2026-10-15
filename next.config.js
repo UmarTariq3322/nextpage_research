@@ -22,7 +22,9 @@ const nextConfig = {
   async redirects() {
     return Object.entries(sections).flatMap(([route, anchor]) => [
       { source: `/${route}`, destination: `/#${anchor}`, permanent: true },
-      { source: `/${route}/:path*`, destination: `/#${anchor}`, permanent: true },
+      ...(route === "team"
+        ? []
+        : [{ source: `/${route}/:path*`, destination: `/#${anchor}`, permanent: true }]),
     ]);
   },
 };
