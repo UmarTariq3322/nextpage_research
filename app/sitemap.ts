@@ -2,7 +2,11 @@ import type { MetadataRoute } from "next";
 
 import { site } from "@/content/site";
 
-// One-page site: the homepage is the only URL.
+// The homepage plus the NexMeta course page.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: site.url, lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
+  const lastModified = new Date();
+  return [
+    { url: site.url, lastModified, changeFrequency: "monthly", priority: 1 },
+    { url: `${site.url}/nexmeta`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+  ];
 }

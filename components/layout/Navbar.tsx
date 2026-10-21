@@ -130,6 +130,14 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-1">
+          <Link
+            href="/nexmeta"
+            aria-current={pathname === "/nexmeta" ? "page" : undefined}
+            className="mr-1 hidden h-9 items-center gap-2 rounded-md border border-accent/30 px-3 text-sm font-medium text-accent transition-colors hover:bg-accent-soft xl:inline-flex"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+            NexMeta course
+          </Link>
           <ThemeToggle />
           <Button asChild size="sm" className="ml-1 hidden sm:inline-flex">
             <Link href={communityCta.href}>
@@ -203,6 +211,18 @@ export function Navbar() {
               );
             })}
           </ul>
+
+          <Link
+            href="/nexmeta"
+            onClick={() => setOpen(false)}
+            className="mt-8 flex items-center justify-between rounded-lg border border-accent/30 bg-accent-soft/50 px-4 py-3.5"
+          >
+            <span>
+              <span className="block text-xs font-medium uppercase tracking-wider text-accent">Now enrolling</span>
+              <span className="mt-0.5 block font-display font-semibold tracking-tight">NexMeta: meta-analysis course</span>
+            </span>
+            <Arrow />
+          </Link>
 
           <Button asChild size="lg" className="mt-8 w-full">
             <Link href={communityCta.href} onClick={() => setOpen(false)}>
