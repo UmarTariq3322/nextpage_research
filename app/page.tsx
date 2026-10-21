@@ -130,6 +130,22 @@ export default function HomePage() {
           description="Nine modules from research foundations to scientific writing and evidence synthesis. Methods are taught because a research question needs them, and each module ends in a real output."
           className="mb-12"
         />
+        <Link
+          href="/nexmeta"
+          className="band group relative mb-8 flex flex-col gap-4 overflow-hidden rounded-lg p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+        >
+          <div aria-hidden className="grid-lines absolute inset-0 opacity-40 [mask-image:linear-gradient(to_left,black,transparent_70%)]" />
+          <div className="relative">
+            <p className="t-label flex items-center gap-2 text-accent">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Now enrolling
+            </p>
+            <p className="t-h3 mt-3 text-2xl">NexMeta: The Complete Science of Meta-Analysis</p>
+            <p className="mt-1 text-sm text-fg-soft">3 modules · 12 lectures · final quiz · certificate</p>
+          </div>
+          <span className="relative inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-on">
+            View course &amp; register <Arrow />
+          </span>
+        </Link>
         <CurriculumExplorer />
         <div className="mt-10 flex flex-col gap-4 border-t border-line pt-8 lg:flex-row lg:items-center lg:gap-10">
           <p className="t-label shrink-0">Capstone portfolio</p>
