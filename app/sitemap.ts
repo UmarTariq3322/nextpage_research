@@ -8,5 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: site.url, lastModified, changeFrequency: "monthly", priority: 1 },
     { url: `${site.url}/nexmeta`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${site.url}/nexmeta/register`, lastModified, changeFrequency: "weekly", priority: 0.8 },
   ];
 }

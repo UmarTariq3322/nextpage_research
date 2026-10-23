@@ -5,7 +5,11 @@ import { Arrow, Button } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
 import { SectionHeading, SectionLabel } from "@/components/ui/section-heading";
 import { Section } from "@/components/site/primitives";
-import { RegistrationForm } from "@/components/nexmeta/RegistrationForm";
+import {
+  DeadlineCountdownBanner,
+  FloatingDeadlineBar,
+  HeroSecureButton,
+} from "@/components/nexmeta/DeadlineCountdown";
 import { assessment, course, courseModules, formatPKR, pricing, type PackageKey } from "@/content/nexmeta";
 
 export const metadata: Metadata = {
@@ -34,11 +38,9 @@ export default function NexMetaPage() {
             </h1>
             <p className="t-lead mt-6 max-w-xl">{course.summary}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <a href="#register">
-                  Register now <Arrow />
-                </a>
-              </Button>
+              <HeroSecureButton>
+                Secure your seat now
+              </HeroSecureButton>
               <Button asChild size="lg" variant="outline">
                 <a href="#curriculum">See the curriculum</a>
               </Button>
@@ -72,6 +74,15 @@ export default function NexMetaPage() {
           </dl>
         </div>
       </header>
+
+      {/* Deadline countdown & quick action banner */}
+      <section className="border-b border-line bg-paper py-8 sm:py-10">
+        <div className="container">
+          <DeadlineCountdownBanner />
+        </div>
+      </section>
+
+
 
       {/* Curriculum */}
       <Section id="curriculum" labelledBy="curriculum-title" className="scroll-mt-20">
@@ -132,7 +143,7 @@ export default function NexMetaPage() {
       </Section>
 
       {/* Assessment and certificate */}
-      <Section tone="band" size="compact" labelledBy="assess-title">
+      <Section id="assessment" tone="band" size="compact" labelledBy="assess-title" className="scroll-mt-20">
         <div className="grid gap-10">
           <SectionHeading id="assess-title" eyebrow="Assessment" title="A final quiz, then your certificate." />
           <ol className="grid gap-px overflow-hidden rounded-lg bg-line sm:grid-cols-2 lg:grid-cols-5">
@@ -150,7 +161,7 @@ export default function NexMetaPage() {
       </Section>
 
       {/* Pricing */}
-      <Section labelledBy="pricing-title" size="compact">
+      <Section id="pricing" labelledBy="pricing-title" size="compact" className="scroll-mt-20">
         <SectionHeading
           id="pricing-title"
           layout="split"
@@ -191,17 +202,22 @@ export default function NexMetaPage() {
         </div>
       </Section>
 
-      {/* Registration */}
-      <Section id="register" tone="subtle" labelledBy="register-title" className="scroll-mt-20">
-        <SectionHeading
-          id="register-title"
-          eyebrow="Registration"
-          title="Register for NexMeta."
-          description="It takes about three minutes. Have your payment screenshot ready."
-          className="mb-12"
-        />
-        <RegistrationForm />
-      </Section>
+      {/* Bottom enrollment callout */}
+      <section className="border-t border-line bg-subtle py-16">
+        <div className="container flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+          <div>
+            <p className="t-label text-accent">Enrollment open</p>
+            <h3 className="t-h3 mt-1 text-2xl text-fg">Ready to master meta-analysis?</h3>
+            <p className="mt-1 text-sm text-fg-soft">Apply before the cohort deadline to secure your seat.</p>
+          </div>
+          <HeroSecureButton className="shrink-0">
+            Secure your seat now
+          </HeroSecureButton>
+        </div>
+      </section>
+
+      {/* Floating deadline timer and quick access bar */}
+      <FloatingDeadlineBar />
     </>
   );
 }

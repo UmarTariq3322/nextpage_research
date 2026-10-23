@@ -8,6 +8,17 @@ export const course = {
     "A three-module course that takes you from choosing a topic to analysing data in R and writing the manuscript of a systematic review and meta-analysis.",
 };
 
+export const registrationDeadline = {
+  // ISO date string for current cohort registration deadline.
+  // Edit this date to change the countdown target.
+  targetDate: "2026-11-04T23:59:59+05:00",
+  dateDisplay: "November 4, 2026",
+  title: "Secure your seat now",
+  subtitle: "Seats are limited per cohort to ensure direct 1-on-1 mentor guidance and review.",
+  cohort: "Cohort 1",
+  seatNotice: "Limited seats available",
+};
+
 export type Lecture = { n: string; title: string; instructor: string; topics?: string[] };
 export type CourseModule = {
   id: "m1" | "m2" | "m3";
